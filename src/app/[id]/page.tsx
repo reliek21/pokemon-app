@@ -8,11 +8,18 @@ interface IPokemonPage {
 }
 
 export async function generateMetadata({ params }: IPokemonPage): Promise<Metadata> {
-  const { id, name } = await getPokemonId(params.id);
+  try {
+    const { id, name } = await getPokemonId(params.id);
 
-  return {
-    title: `#${id} - ${name}`,
-    description: `Página del pokémon: ${name}`,
+    return {
+      title: `#${id} - ${name}`,
+      description: `Página del pokémon: ${name}`,
+    }
+  } catch (error: unknown) {
+    return {
+        title: "Página del pokemon",
+        description: "Lorem ipsum",
+    }
   }
 }
 

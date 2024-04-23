@@ -3,7 +3,7 @@ import { getPokemons } from "@/services";
 import { PokemonList } from "@/components";
 
 export default async function Home(): Promise<React.ReactElement> {
-    const pokemons = await getPokemons(151);
+    const pokemons = await getPokemons(100);
 
   return (
       <main className="flex min-h-screen flex-col items-center justify-between">

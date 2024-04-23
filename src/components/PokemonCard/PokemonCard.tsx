@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IPokemonCard {
     id: string;
@@ -11,8 +12,8 @@ export function PokemonCard({ id, name }: IPokemonCard) {
     const joinLetter: string = upperLetter + name.slice(1, name.length);
 
     return (
-        <div style={{ height: 300 }}
-             className="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg">
+        <Link style={{ height: 300 }}
+             className="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg" href={id}>
             <svg className="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                  style={{transform: 'scale(1.5)', opacity: 0.1}}>
                 <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
@@ -39,6 +40,6 @@ export function PokemonCard({ id, name }: IPokemonCard) {
                     <button className="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none items-center">Like</button>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
