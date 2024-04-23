@@ -21,9 +21,38 @@ export async function getPokemons(limit: number = 20, offset: number = 0): Promi
     }
 }
 
-export async function getPokemonId(id: string): Promise<SinglePokemon> {
+export async function getPokemonsStatic(): Promise<{name: string}[]> {
     try {
-        return await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+        const response: PokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100`, {
+            method: "GET",
+            cache: "force-cache",
+        })
+          .then(res => res.json());
+
+        const staticPokemons = response.results.map((pokemon) => ({
+            name: pokemon.name,
+        }))
+
+        return staticPokemons.map(({ name }) => ({ name: name }));
+    } catch (error: unknown) {
+        return notFound();
+    }
+}
+
+export async function getPokemonId(name: string): Promise<SinglePokemon> {
+    try {
+        return await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
+            method: "GET",
+            cache: "force-cache",
+        }).then(res => res.json());
+    } catch (error: unknown) {
+        return notFound();
+    }
+}
+
+export async function getPokemonName(name: string): Promise<SinglePokemon> {
+    try {
+        return await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
             method: "GET",
             cache: "force-cache",
         }).then(res => res.json());
