@@ -17,13 +17,7 @@ export default function Error({
     <div className="w-full flex flex-col items-center justify-center">
       <h2>Something went wrong!</h2>
       <span>{error.message}</span>
-      <button
-        onClick={
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <button onClick={() => reset()}>Try again</button>
     </div>
   )
 }
